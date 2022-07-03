@@ -8,10 +8,6 @@ import com.bumptech.glide.Glide
 
 class DetailActivity : AppCompatActivity() {
 
-    companion object {
-        const val DATA = "data"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -39,5 +35,9 @@ class DetailActivity : AppCompatActivity() {
         tvLocation.text = data.location
         tvRepository.text = data.repository + " Repositories"
 
+    }
+
+    companion object {
+        const val DATA = "data"
     }
 }
