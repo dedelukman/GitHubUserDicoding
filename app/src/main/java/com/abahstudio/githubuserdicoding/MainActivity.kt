@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        rvGitHubUser = findViewById(R.id.rv_githubuser)
+        rvGitHubUser  = findViewById(R.id.rv_githubuser)
         rvGitHubUser.setHasFixedSize(true)
 
         list.addAll(listGitHubUsers)

@@ -4,36 +4,32 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import com.abahstudio.githubuserdicoding.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
 
 class DetailActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val data = intent.getParcelableExtra<GitHubUser>("DATA")
 
 
-        var imgAvatar: ImageView = findViewById(R.id.iv_detail_avatar)
-        var tvName: TextView = findViewById(R.id.tv_detail_name)
-        var tvUserName: TextView = findViewById(R.id.tv_detail_username)
-        var tvFolowers: TextView = findViewById(R.id.tv_detail_folower)
-        var tvFolowing: TextView = findViewById(R.id.tv_detail_folowing)
-        var tvCompany: TextView = findViewById(R.id.tv_detail_company)
-        var tvLocation: TextView = findViewById(R.id.tv_detail_location)
-        var tvRepository: TextView = findViewById(R.id.tv_detail_repository)
         Glide.with(this)
             .load(data?.avatar!!)
             .circleCrop()
-            .into(imgAvatar)
-        tvName.text = data.name
-        tvUserName.text = "@" + data.username
-        tvFolowers.text = data.followers + " followers"
-        tvFolowing.text = "* " +data.followers + " folowing"
-        tvCompany.text = data.company
-        tvLocation.text = data.location
-        tvRepository.text = data.repository + " Repositories"
+            .into(binding.ivDetailAvatar)
+        binding.tvDetailName.text = data.name
+        binding.tvDetailUsername.text = "@" + data.username
+        binding.tvDetailFolower.text = data.followers + " followers"
+        binding.tvDetailFolowing.text = "* " +data.following + " folowing"
+        binding.tvDetailCompany.text = data.company
+        binding.tvDetailLocation.text = data.location
+        binding.tvDetailRepository.text = data.repository + " Repositories"
 
     }
 
