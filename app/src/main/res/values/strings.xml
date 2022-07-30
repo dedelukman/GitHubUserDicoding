@@ -8,6 +8,8 @@
     <string name="github_user_followers">10 followers</string>
     <string name="github_user_following">10 following</string>
     <string name="github_icon">GitHub Icon</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Github username</string>
     <string-array name="username">
         <item>JakeWharton</item>
         <item>amitshekhariitbhu</item>
