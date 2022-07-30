@@ -1,4 +1,4 @@
-package com.abahstudio.githubuserdicoding
+package com.abahstudio.githubuserdicoding.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.abahstudio.githubuserdicoding.GitHubUser
+import com.abahstudio.githubuserdicoding.R
 import com.bumptech.glide.Glide
 
 class ListGitHubUserAdapter(private val listGitHubUser: ArrayList<GitHubUser>) : RecyclerView.Adapter<ListGitHubUserAdapter.ListViewHolder>() {

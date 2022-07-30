@@ -12,6 +12,7 @@ import android.content.Intent
 import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import com.abahstudio.githubuserdicoding.adapter.ListGitHubUserAdapter
 
 class MainActivity : AppCompatActivity() {
 

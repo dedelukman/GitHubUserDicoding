@@ -2,10 +2,9 @@ package com.abahstudio.githubuserdicoding
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.viewpager2.widget.ViewPager2
+import com.abahstudio.githubuserdicoding.adapter.SectionsPagerAdapter
 import com.abahstudio.githubuserdicoding.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
