@@ -1,5 +1,7 @@
 package com.abahstudio.githubuserdicoding
 
+import android.app.SearchManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -7,6 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import android.content.res.Configuration
 import androidx.recyclerview.widget.GridLayoutManager
 import android.content.Intent
+import android.view.Menu
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
+import com.abahstudio.githubuserdicoding.adapter.ListGitHubUserAdapter
+import com.abahstudio.githubuserdicoding.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +29,34 @@ class MainActivity : AppCompatActivity() {
 
         list.addAll(listGitHubUsers)
         showRecyclerList()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.option_menu, menu)
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = menu.findItem(R.id.search).actionView as SearchView
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        searchView.queryHint = resources.getString(R.string.search_hint)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            /*
+            Gunakan method ini ketika search selesai atau OK
+             */
+            override fun onQueryTextSubmit(query: String): Boolean {
+                Toast.makeText(this@MainActivity, query, Toast.LENGTH_SHORT).show()
+                searchView.clearFocus()
+                return true
+            }
+
+            /*
+            Gunakan method ini untuk merespon tiap perubahan huruf pada searchView
+             */
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+        })
+        return true
     }
 
     private val listGitHubUsers: ArrayList<GitHubUser>
@@ -66,6 +101,23 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intentToDetail)
             }
         })
+    }
+
+    private fun initRecyclerView() {
+        githubUserAdapter = GithubUserAdapter(this)
+        githubUserResultAdapter = GithubUserResultAdapter(this)
+        rvGithubUser.adapter = githubUserAdapter
+        rvGithubUserResult.adapter = githubUserResultAdapter
+
+        val myJson = inputStreamToString(resources.openRawResource(R.raw.github_user))
+        Gson().fromJson(myJson, GithubUserModel::class.java).let {
+            githubUserAdapter.addAll(it.users)
+        }
+    }
+
+    companion object {
+        private const val TAG = "MainActivity"
+        private const val GITHUB_ID = "uewq1zg2zlskfw1e867"
     }
 
 }
