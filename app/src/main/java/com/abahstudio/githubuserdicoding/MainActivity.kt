@@ -13,6 +13,7 @@ import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import com.abahstudio.githubuserdicoding.adapter.ListGitHubUserAdapter
+import com.abahstudio.githubuserdicoding.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -100,6 +101,23 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intentToDetail)
             }
         })
+    }
+
+    private fun initRecyclerView() {
+        githubUserAdapter = GithubUserAdapter(this)
+        githubUserResultAdapter = GithubUserResultAdapter(this)
+        rvGithubUser.adapter = githubUserAdapter
+        rvGithubUserResult.adapter = githubUserResultAdapter
+
+        val myJson = inputStreamToString(resources.openRawResource(R.raw.github_user))
+        Gson().fromJson(myJson, GithubUserModel::class.java).let {
+            githubUserAdapter.addAll(it.users)
+        }
+    }
+
+    companion object {
+        private const val TAG = "MainActivity"
+        private const val GITHUB_ID = "uewq1zg2zlskfw1e867"
     }
 
 }
